@@ -25,36 +25,51 @@ description, importdata, implementation = st.tabs(["Deskripsi ", " Import Data "
 # warnings.filterwarnings("ignore")
 with description:
     st.subheader("Deskripsi")
-    st.write("Nama : Abdul Wachid Al Aziz | NIM : 200411100103 | Kelas : Penambangan Data A")
+    st.write("Nama : CITRA INDAH LESTARI | NIM : 200411100202 | Kelas : Penambangan Data A")
     st.write("")
-    st.write("Dataset berisi tentang catatan performa tubuh manusia, kekuatan fisik dan nilai demografi seperti usia.")
-    st.write("Aplikasi ini digunakan untuk mencari klasifikasi performa tubuh.")
+    st.write("Dataset berisi tentang prediksi lulus atau gagalsesuai dengan nilai siswa.")
+    st.write("Aplikasi ini digunakan untuk memprediksi kelulusan siswa lewat nilai.")
     st.write("Fitur yang digunakan :")
-    st.write("1. age (Usia) : Numerik")
-    st.write("2. gender (Jenis kelamin) : Kategorikal")
-    st.write("3. height_cm (Tinggi Badan) : Numerik")
-    st.write("4. weight_kg (Berat badan) : Numerik")
-    st.write("5. body_fat (Lemak tubuh) : Numerik")
-    st.write("6. diastolic (Tekanan darah diastolic) : Numerik")
-    st.write("7. systolic (Tekanan darah systolic) : Numerik")
-    st.write("8. gripForce (Kekuatan cengkrama) : Numerik")
-    st.write("9. sit_and_binding_fowrard (Jarak sitting forward binding : Numerik")
-    st.write("10. sit_ups_count (Jumlah sit up) : Numerik")
-    st.write("11. broad_jumps_cm (Nilai lompat jauh  : Numerik")
-    st.write("Sumber dataset https://www.kaggle.com/datasets/kukuroo3/body-performance-data")
-    st.write("Link github https://github.com/alaziz31/interface")
+    st.write("1. school (Sekolah : Numerik")
+    st.write("2. sex (Gender : numerik")
+    st.write("3. age (Usia : Numerik")
+    st.write("4. address (Alamat : Numerik")
+    st.write("5. famsize (ukuran keluarga : Numerik")
+    st.write("6. Pstatus (status kohabitasi orang tua : Numerik")
+    st.write("7. medu (pendidikan ibu : Numerik")
+    st.write("8. Fedu  (pendidikan ayah : Numerik")
+    st.write("9. traveltime (waktu tempuh dari rumah ke sekolah : Numerik")
+    st.write("10. studytime (waktu belajar mingguan : Numerik")
+    st.write("11. failures (jumlah kegagalan kelas sebelumnya : Numerik")
+    st.write("12. schoolsup (dukungan pendidikan ekstra : Numerik")
+    st.write("13. famsup (dukungan pendidikan keluarga : Numerik")
+    st.write("14. paid (kelas berbayar ekstra dalam mata pelajaran kursus : Numerik")
+    st.write("15. activities (kegiatan ekstrakurikuler : Numerik")
+    st.write("16. nursery (menghadiri sekolah pembibitan : Numerik")
+    st.write("17. higher (ingin mengambil pendidikan tinggi : Numerik")
+    st.write("18. internet (Akses internet di rumah : Numerik")
+    st.write("19. romantic (dengan hubungan romantis : Numerik")
+    st.write("20. famrel (kualitas hubungan keluarga : Numerik")
+    st.write("21. freetime (waktu luang setelah sekolah : Numerik")
+    st.write("22. goout (pacaran dengan teman : Numerik")
+    st.write("23. Dalc (konsumsi alkohol pada hari kerja : Numerik")
+    st.write("24. Walc (konsumsi alkohol akhir pekan : Numerik")
+    st.write("25. health (status kesehatan saat ini : Numerik")
+    st.write("26. absences (jumlah absen sekolah : Numerik")
+    st.write("27. G1 (nilai periode pertama : Numerik")
+    st.write("28. G2 (nilai periode kedua : Numerik")
+    st.write("29. G3 (nilai akhir : Numerik")
+    st.write("30. pass (dukungan pendidikan ekstra : Numerik")
+    st.write("Sumber dataset https://www.kaggle.com/datasets/dinhanhx/studentgradepassorfailprediction")
+    st.write("Link github https://github.com/CitraIndahL/dataset")
 
 with importdata:
-    st.subheader("Upload File .csv")
-    uploaded_files = st.file_uploader("", accept_multiple_files=True)
     for uploaded_file in uploaded_files:
         dataset, preprocessing, modelling = st.tabs(["Dataset", "Preprocessing", "Modelling"])
         with dataset:
-            df = pd.read_csv(uploaded_file)
-            df['gender'].replace(['F','M'],[0,1],inplace=True)
-            st.write('keterangan : "gender" 1 = Male, 0 = Female')
-            st.dataframe(df)
-
+            st.write("Import Data")
+            data = pd.read_csv("https://raw.githubusercontent.com/CitraIndahL/dataset/main/student-mat-pass-or-fail.csv")
+            st.dataframe(data)
         with preprocessing:
             st.subheader("Preprocessing")
             prepros = st.radio(
@@ -64,10 +79,10 @@ with importdata:
 
             if prepros == "Min Max Scaler":
                 if prepoc:
-                    df[["age","gender", "height_cm", "weight_kg", "body_fat", "diastolic", "systolic", "gripForce", "sit_and_bend_forward_cm", "sit_ups_counts","broad_jump_cm"]].agg(['min','max'])
-                    df.Class.value_counts()
-                    X = df.drop(columns=["Class"],axis=1)
-                    y = df["Class"]
+                    df[["school","sex", "age", "address", "famsize", "Pstatus", "Medu", "Fedu", "traveltime", "studytime","failures","schoolsup","famsup", "paid", "activities", "nursery", "higher", "internet", "romantic","famrel","freetime", "goout", "Dalc", "Walc", "health", "absences", "G1", "G2", "G3", "pass"]].agg(['min','max'])
+                    df.pass.value_counts()
+                    X = df.drop(columns=["pass"],axis=1)
+                    y = df["pass"]
 
                     "### Normalize data transformasi"
                     X
@@ -84,8 +99,8 @@ with importdata:
                     X.shape, y.shape
 
         with modelling:
-            X=df[["age", "gender", "height_cm", "weight_kg", "body_fat", "diastolic", "systolic", "gripForce", "sit_and_bend_forward_cm", "sit_ups_counts","broad_jump_cm"]]
-            y=df["Class"]
+            X=df[["school","sex", "age", "address", "famsize", "Pstatus", "Medu", "Fedu", "traveltime", "studytime","failures","schoolsup","famsup", "paid", "activities", "nursery", "higher", "internet", "romantic","famrel","freetime", "goout", "Dalc", "Walc", "health", "absences", "G1", "G2", "G3", "pass"]]
+            y=df["pass"]
             X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=4)
             from sklearn.preprocessing import StandardScaler
             sc = StandardScaler()
@@ -96,7 +111,7 @@ with importdata:
             # X_train = cv.fit_transform(X_train)
             # X_test = cv.fit_transform(X_test)
             st.subheader("Modeling")
-            st.write("Silahkan pilih Model yang ingin anda Modelling :")
+            st.write("Silahkan pilih Model :")
             naive = st.checkbox('Naive Bayes')
             kn = st.checkbox('K-Nearest Neighbor')
             des = st.checkbox('Decision Tree')
@@ -149,22 +164,41 @@ with importdata:
     
 with implementation:
     st.subheader("Implementation")
-    age = st.number_input('Masukkan Usia (tahun)')
-    gender = st.number_input('Masukkan gender ( 1=Pria 0=Wanita )')
-    height_cm = st.number_input('Masukkan Tinggi badan (cm)')
-    weight_kg = st.number_input('Masukkan Berat badan (Kg)')
-    body_fat = st.number_input('Masukkan Lemak tubuh (Persen)')
-    diastolic = st.number_input('Masukkan Tekanan diastolic')
-    systolic = st.number_input('Masukkan Tekanan systolic')
-    gripForce = st.number_input('Masukkan Kekuatan cengkraman (Kg)')
-    sit_and_bend_forward_cm = st.number_input('Masukkan Ukuran sit and bend (cm)')
-    sit_ups_counts = st.number_input('Masukkan Jumlah sit-ups')
-    broad_jump_cm = st.number_input('Masukkan Jarak broad jump (cm)')
+    school = st.number_input('Masukkan sekolah siswa (1 : Garbiel Pereira, 0 : Mousinho da Silveria )')
+    sex = st.number_input('Masukkan gender ( 1=Pria 0=Wanita )')
+    age = st.number_input('Masukkan Usia (Tahun)')
+    address = st.number_input('Masukkan Berat badan (Kg)')
+    famsize = st.number_input('Masukkan Lemak tubuh (Persen)')
+    Pstatus = st.number_input('Masukkan Tekanan diastolic')
+    Medu = st.number_input('Masukkan Tekanan systolic')
+    Fedu = st.number_input('Masukkan Kekuatan cengkraman (Kg)')
+    traveltime = st.number_input('Masukkan Ukuran sit and bend (cm)')
+    studytime = st.number_input('Masukkan Jumlah sit-ups')
+    failures = st.number_input('Masukkan Jarak broad jump (cm)')
+    schoolsup = st.number_input('Masukkan Usia (tahun)')
+    famsup = st.number_input('Masukkan gender ( 1=Pria 0=Wanita )')
+    paid = st.number_input('Masukkan Tinggi badan (cm)')
+    activities = st.number_input('Masukkan Berat badan (Kg)')
+    nursery = st.number_input('Masukkan Lemak tubuh (Persen)')
+    higher = st.number_input('Masukkan Tekanan diastolic')
+    internet = st.number_input('Masukkan Tekanan systolic')
+    romantic = st.number_input('Masukkan Kekuatan cengkraman (Kg)')
+    famrel = st.number_input('Masukkan Ukuran sit and bend (cm)')
+    freetime = st.number_input('Masukkan Jumlah sit-ups')
+    goout = st.number_input('Masukkan Jarak broad jump (cm)')
+    Dalc = st.number_input('Masukkan Jarak broad jump (cm)')
+    Walc = st.number_input('Masukkan Usia (tahun)')
+    health = st.number_input('Masukkan gender ( 1=Pria 0=Wanita )')
+    absences = st.number_input('Masukkan Tinggi badan (cm)')
+    G1 = st.number_input('Masukkan Berat badan (Kg)')
+    G2 = st.number_input('Masukkan Lemak tubuh (Persen)')
+    G3 = st.number_input('Masukkan Tekanan diastolic')
+    pass = st.number_input('Masukkan Tekanan systolic')
 
     def submit():
         # input
         inputs = np.array([[
-            age, height_cm, weight_kg, body_fat, diastolic, systolic, gripForce, sit_and_bend_forward_cm, sit_ups_counts, broad_jump_cm
+            school, sex, age, address, famsize, Pstatus, Medu, Fedu, traveltime, studytime, failures,schoolsup, famsup, paid, activities, nursery, higher, internet, romantic, famrel, freetime, goout, Dalc, Walc, health, absences, G1, G2, G3, pass
         ]])
         baru = pd.DataFrame(inputs)
         input = pd.get_dummies(baru)
@@ -178,5 +212,4 @@ with implementation:
 
     all = st.button("Submit")
     if all :
-        st.snow()
         submit()

@@ -59,7 +59,6 @@ with description:
     st.write("27. G1 (nilai periode pertama : Numerik")
     st.write("28. G2 (nilai periode kedua : Numerik")
     st.write("29. G3 (nilai akhir : Numerik")
-    st.write("30. pass (dukungan pendidikan ekstra : Numerik")
     st.write("Sumber dataset https://www.kaggle.com/datasets/dinhanhx/studentgradepassorfailprediction")
     st.write("Link github https://github.com/CitraIndahL/dataset")
 
@@ -79,7 +78,7 @@ with importdata:
 
             if prepros == "Min Max Scaler":
                 if prepoc:
-                    df[["school","sex", "age", "address", "famsize", "Pstatus", "Medu", "Fedu", "traveltime", "studytime","failures","schoolsup","famsup", "paid", "activities", "nursery", "higher", "internet", "romantic","famrel","freetime", "goout", "Dalc", "Walc", "health", "absences", "G1", "G2", "G3", "pass"]].agg(['min','max'])
+                    df[["school","sex", "age", "address", "famsize", "Pstatus", "Medu", "Fedu", "traveltime", "studytime","failures","schoolsup","famsup", "paid", "activities", "nursery", "higher", "internet", "romantic","famrel","freetime", "goout", "Dalc", "Walc", "health", "absences", "G1", "G2", "G3"]].agg(['min','max'])
                     df.pass.value_counts()
                     X = df.drop(columns=["pass"],axis=1)
                     y = df["pass"]
@@ -99,7 +98,7 @@ with importdata:
                     X.shape, y.shape
 
         with modelling:
-            X=df[["school","sex", "age", "address", "famsize", "Pstatus", "Medu", "Fedu", "traveltime", "studytime","failures","schoolsup","famsup", "paid", "activities", "nursery", "higher", "internet", "romantic","famrel","freetime", "goout", "Dalc", "Walc", "health", "absences", "G1", "G2", "G3", "pass"]]
+            X=df[["school","sex", "age", "address", "famsize", "Pstatus", "Medu", "Fedu", "traveltime", "studytime","failures","schoolsup","famsup", "paid", "activities", "nursery", "higher", "internet", "romantic","famrel","freetime", "goout", "Dalc", "Walc", "health", "absences", "G1", "G2", "G3"]]
             y=df["pass"]
             X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=4)
             from sklearn.preprocessing import StandardScaler
@@ -193,13 +192,11 @@ with implementation:
     G1 = st.number_input('Masukkan nilai periode pertama (1 : 1, 2 : 2, 3 : 3, 4 : 4, 5 : 5, 6 : 6, 7 : 7, 8 : 8, 9 : 9, 10 : 10, 11 : 11, 12 : 12, 13 : 13, 14 : 14, 15 : 15, 16 : 16, 17 : 17, 18 : 18, 19 : 19, 20 : 20)')
     G2 = st.number_input('Masukkan nilai periode kedua (1 : 1, 2 : 2, 3 : 3, 4 : 4, 5 : 5, 6 : 6, 7 : 7, 8 : 8, 9 : 9, 10 : 10, 11 : 11, 12 : 12, 13 : 13, 14 : 14, 15 : 15, 16 : 16, 17 : 17, 18 : 18, 19 : 19, 20 : 20)')
     G3 = st.number_input('Masukkan nilai akhir (1 : 1, 2 : 2, 3 : 3, 4 : 4, 5 : 5, 6 : 6, 7 : 7, 8 : 8, 9 : 9, 10 : 10, 11 : 11, 12 : 12, 13 : 13, 14 : 14, 15 : 15, 16 : 16, 17 : 17, 18 : 18, 19 : 19, 20 : 20)')
-    pass = st.number_input('Masukkan kelulusan siswa (1 : lulus, 0 : target keluaran)')
 
     def submit():
         # input
         inputs = np.array([[
-            school, sex, age, address, famsize, Pstatus, Medu, Fedu, traveltime, studytime, failures,schoolsup, famsup, paid, activities, nursery, higher, internet, romantic, famrel, freetime, goout, Dalc, Walc, health, absences, G1, G2, G3, pass
-        ]])
+            school, sex, age, address, famsize, Pstatus, Medu, Fedu, traveltime, studytime, failures,schoolsup, famsup, paid, activities, nursery, higher, internet, romantic, famrel, freetime, goout, Dalc, Walc, health, absences, G1, G2, G3]])
         baru = pd.DataFrame(inputs)
         input = pd.get_dummies(baru)
         st.write("Data yang diinputkan :")

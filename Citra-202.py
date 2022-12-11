@@ -79,7 +79,7 @@ with importdata:
             if prepros == "Min Max Scaler":
                 if prepoc:
                     df[["school","sex", "age", "address", "famsize", "Pstatus", "Medu", "Fedu", "traveltime", "studytime","failures","schoolsup","famsup", "paid", "activities", "nursery", "higher", "internet", "romantic","famrel","freetime", "goout", "Dalc", "Walc", "health", "absences", "G1", "G2", "G3"]].agg(['min','max'])
-                    df.pass.value_counts()
+                    df.Class.value_counts()
                     X = df.drop(columns=["pass"],axis=1)
                     y = df["pass"]
 

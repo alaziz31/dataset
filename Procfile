@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run interface.py
+web: sh setup.sh && streamlit run Citra-202.py

@@ -65,7 +65,7 @@ with description:
 with importdata:
     dataset, preprocessing, modelling = st.tabs(["Dataset", "Preprocessing", "Modelling"])
     with dataset:
-            st.write("Import Data")
+        st.write("Import Data")
             df = pd.read_csv("https://raw.githubusercontent.com/CitraIndahL/dataset/main/student-mat-pass-or-fail.csv")
             st.dataframe(data)
         with preprocessing:
@@ -158,7 +158,7 @@ with importdata:
                 if mod :
                     st.write("Model Decision Tree accuracy score : {0:0.2f}" . format(akurasi_dt))
 
-
+    
         
     
 with implementation:

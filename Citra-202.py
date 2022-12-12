@@ -27,7 +27,7 @@ with description:
     st.subheader("Deskripsi")
     st.write("Nama : CITRA INDAH LESTARI | NIM : 200411100202 | Kelas : Penambangan Data A")
     st.write("")
-    st.write("Dataset berisi tentang prediksi lulus atau gagalsesuai dengan nilai siswa.")
+    st.write("Dataset berisi tentang prediksi lulus atau gagal sesuai dengan nilai siswa.")
     st.write("Aplikasi ini digunakan untuk memprediksi kelulusan siswa lewat nilai.")
     st.write("Fitur yang digunakan :")
     st.write("1. school (Sekolah : Numerik")
@@ -63,8 +63,7 @@ with description:
     st.write("Link github https://github.com/CitraIndahL/dataset")
 
 with importdata:
-    for uploaded_file in uploaded_files:
-        dataset, preprocessing, modelling = st.tabs(["Dataset", "Preprocessing", "Modelling"])
+    dataset, preprocessing, modelling = st.tabs(["Dataset", "Preprocessing", "Modelling"])
         with dataset:
             st.write("Import Data")
             df = pd.read_csv("https://raw.githubusercontent.com/CitraIndahL/dataset/main/student-mat-pass-or-fail.csv")

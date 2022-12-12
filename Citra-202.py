@@ -172,7 +172,7 @@ with implementation:
     Medu = st.number_input('Masukkan pendidikan ibu (1 : pendidikan dasar, 0 : tidak ada)')
     Fedu = st.number_input('Masukkan pendidikan ayah (1 : pendidikan dasar, 0 : tidak ada)')
     traveltime = st.number_input('Masukkan waktu tempuh (1 : 1o menit, 2 : 20 menit, 3 : 30 menit, 4 : 4 menit, 5 : 50 menit, 6 : 1 jam)')
-    studytime = st.number_input('Masukkan waktu belajar (1 : 1 jam, 2 : 2 jam, 3 : 3 jam, 4 : 4 jam, 5 : 5 jam, 6 : 6 jam, 7 : 7 jam, 8 : 8 jam, 9 : 9 jam, 10 : 10 jam)')')
+    studytime = st.number_input('Masukkan waktu belajar (1 - 10)')
     failures = st.number_input('Masukkan jumlah kegagalan kelas sebelumnya (1 : ya, 0 : selain itu)')
     schoolsup = st.number_input('Masukkan dukungan pendidikan ekstra (1 : ya, 0 : tidak)')
     famsup = st.number_input('Masukkan dukungan pendidikan keluarga (1 : ya, 0 : tidak)')

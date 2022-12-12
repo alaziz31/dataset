@@ -67,7 +67,7 @@ with importdata:
         dataset, preprocessing, modelling = st.tabs(["Dataset", "Preprocessing", "Modelling"])
         with dataset:
             st.write("Import Data")
-            data = pd.read_csv("https://raw.githubusercontent.com/CitraIndahL/dataset/main/student-mat-pass-or-fail.csv")
+            df = pd.read_csv("https://raw.githubusercontent.com/CitraIndahL/dataset/main/student-mat-pass-or-fail.csv")
             st.dataframe(data)
         with preprocessing:
             st.subheader("Preprocessing")
